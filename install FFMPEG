@@ -1,0 +1,16 @@
+matplotlib制作动画时MovieWriter ffmpeg unavailable的解决方法
+
+Yeah_Chaozhou 2020-09-26 14:38:36  919  收藏
+分类专栏： 学习笔记 文章标签： anaconda python
+版权
+问题描述：
+win10 x64 Anaconda环境下，运行Jupyter notebook
+导入matplotlib.animation.FuncAnimation模块进行图表动画制作，当调用animation.save()时
+出现 MovieWriter ffmpeg unavailable; using Pillow instead.错误
+
+解决方案：
+当前虚拟环境已安装pillow，可以实现animation.save('demo.gif')的gif动图导出，但无法导出mp4视频文件。
+退出Jupyter notebook，在Anaconda prompt中 ctrl + c 结束进程，输入指令：
+conda update conda 升级conda
+conda install ffmpeg 安装ffmpeg
+成功安装后再次打开Jupyter notebook，运行代码即可顺利导出mp4
