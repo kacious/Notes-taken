@@ -1,0 +1,23 @@
+https://neusncp.com/user/blog?id=203
+
+key function: plt.style.use(s)
+
+使用VScode+Jupyter绘图时，如果默认的主题是dark的，绘制出来的图也是深色背景的。如果想要好看一点的样式，就需要设置plt的样式了。
+def draw(data):    
+    x = range(len(data))
+    y = [data[d] for d in data]
+    z = zip(x, y)
+    
+    styles = plt.style.available
+    print(styles)
+
+    for s in styles:
+        plt.suptitle('Style: %s'%s, fontsize=16, fontweight='bold')
+        plt.style.use(s) # 设置使用的样式
+        plt.plot(x, y, color='#3498DB', linewidth=1, alpha=0.9)
+        plt.xlim(1, len(data))  # 限定X轴范围
+        ax = plt.axes()
+        plt.xlabel('Day')
+        plt.ylabel('Connections Num')
+        plt.show()
+        
