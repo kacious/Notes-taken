@@ -1,0 +1,38 @@
+https://docs.python.org/2.3/whatsnew/section-slices.html
+
+def answer_five():
+    from sklearn.tree import DecisionTreeClassifier
+
+    clf = DecisionTreeClassifier(random_state=0).fit(X_train2, y_train2)
+    top_five = clf.feature_importances_.argsort()[::-1][:5]   
+    result = list(X_train2.columns[top_five])
+
+    return # Your answer here
+    
+    步骤详解：
+
+clf.feature_importances_ 是一个np.ndarray类型的结构。
+clf.feature_importances_.argsort() 返回该数组升序排序后，各个数字在原数组的序数。
+clf.feature_importances_.argsort().[::-1] 我们要最大的五个，所以让已排好序的数组逆序输出，从升序变降序
+clf.feature_importances_.argsort().[::-1][:5] 取前五个也就是最大的五个
+top_five 是所求数字在原数组的索引，位置，序号， 且我们需要返回一个列表
+所以 result = list(X_train2.columns[top_five])
+
+extended slices
+
+For example, you can now easily extract the elements of a list that have even indexes:
+
+>>> L = range(10)
+>>> L[::2]
+[0, 2, 4, 6, 8]
+Negative values also work to make a copy of the same list in reverse order:
+
+>>> L[::-1]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+This also works for tuples, arrays, and strings:
+
+>>> s='abcd'
+>>> s[::2]
+'ac'
+>>> s[::-1]
+'dcba'
