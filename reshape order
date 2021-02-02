@@ -1,0 +1,13 @@
+作者：lonlon ago
+链接：https://www.zhihu.com/question/295285045/answer/497930884
+
+
+reshape它的含义说的最清楚的一段话：You can think of reshaping as first raveling the array (using the givenindex order), then inserting the elements from the raveled array into thenew array using the same kind of index ordering as was used for theraveling.翻译过来就是先打散，再按照这个顺序插入C 是按照行顺序， F 是按照列顺序，A 就是按照数据在内存中存储的顺序来。比如：    a = array([[0, 1],
+               [2, 3],
+               [4, 5]])
+
+    np.reshape(a, (2, 3), order='F')
+
+    Out[9]: 
+    array([[0, 4, 3],
+           [2, 1, 5]])按照 F 顺序打散后就是 0 2 4 1 3 5， 再按照 F顺序插入， 就是结果。但是有个地方在多维数据的时候容易混淆，就是当我们按照 C 是按照行顺序， F 是按照列顺序去理解的时候多维度数据的时候，这样的解释就不够了，更一般的理解，应该是 C 顺序准确的含义是从最里面的轴开始读写，而F顺序则是从最外面的轴开始读写；'C' means to read / write the elements using C-like index order, with the last axisindex changing fastest, back to the first axis index changing slowest.'F' means to read / write the elements using Fortran-like index order,with the first index changing fastest, and the last index changingslowest.什么意思呢? 以上面的二维数据 a(3,2) 举例就是，C顺序就是先读写最里面 2 这个轴的数据，也就是得到 0 ，1 ，2，3，4，5 这样的顺序，而F顺序则是从最外层 3 这个轴的数据开始读写，得到 0 2 4 1 3 5，多维数据以此类推。
